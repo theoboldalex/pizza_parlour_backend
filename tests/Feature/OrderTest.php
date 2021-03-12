@@ -17,14 +17,14 @@ class OrderTest extends TestCase
     {
        $response = $this->postJson('/api/placeorder');
 
-       $response->assertCreated();
+       $response->assertCreated()->assertJsonFragment(['success' => true]);
     }
 
     public function testGetOrders()
     {
         $response = $this->get('/admin/orders');
 
-        $response->assertOk()->json(['success' => true]);
+        $response->assertOk()->assertJsonFragment(['success' => true]);
     }
 
 }
